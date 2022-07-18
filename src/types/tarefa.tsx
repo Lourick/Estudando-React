@@ -5,3 +5,5 @@ export interface ITarefa {
     completado: boolean,
     id: string
 }
+
+// funciona pfv
