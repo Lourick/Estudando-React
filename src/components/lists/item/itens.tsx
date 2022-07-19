@@ -1,12 +1,34 @@
 import { ITarefa } from '../../../types/tarefa'
-import style from '../Lists.module.scss'
+import style from './Itens.module.scss'
 
-export default function Itens({ tarefa, tempo, selecionado, completado, id }: ITarefa) {
-    console.log('item atual:', { tarefa, tempo, selecionado, completado, id });
+//Extendendo a interface Props para englobar a ITarefa
+interface Props extends ITarefa {
+    selecionaTarefa: (tarefaSelecionada: ITarefa) => void;
+}
+
+export default function Itens(
+    {
+        tarefa,
+        tempo,
+        selecionado,
+        completado,
+        id,
+        selecionaTarefa
+    }: Props) {
     return (
-        <li className={style.item}>
-        <h3> {tarefa} </h3>
-        <p> {tempo} </p>
-    </li>
+        <li
+            // Na linha abaixo diz: a classe será style.item, mas se a props "selecionado" for "true", então a classe será style.itemSelecionado
+            className={`${style.item} ${selecionado ? style.itemSelecionado : ''}`}
+            onClick={() => selecionaTarefa(
+                {
+                    tarefa,
+                    tempo,
+                    selecionado,
+                    completado,
+                    id
+                })}>
+            <h3> {tarefa} </h3>
+            <p> {tempo} </p>
+        </li>
     )
 }
