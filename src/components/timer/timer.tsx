@@ -8,8 +8,10 @@ import style from './Timer.module.scss'
 interface Props {
     // Aqui fica "ITarefa ou undefined" porque. lá em App.tsx, na linha 12, informa que o tipo de selecionado é esse quando passa o mouse por cima, e a tipificação tem que ser igual
     // Afinal, o timer no início não terá nada selecionado, iniciando como undefined, e só mudará para as props de ITarefa quando o usuário as selecionar
-    selecionado: ITarefa | undefined
+    selecionado: ITarefa | undefined,
+    finalizarTarefa: () => void;
 }
+
 
 export function Cronometro({ selecionado }: Props) {
 
@@ -31,6 +33,7 @@ export function Cronometro({ selecionado }: Props) {
                 setTempo(contador - 1);
                 return regressiva(contador - 1);
             }
+            finalizarTarefa();
         }, 1000)
     }
     
@@ -51,6 +54,9 @@ export function Cronometro({ selecionado }: Props) {
 }
 
 
+function finalizarTarefa() {
+    throw new Error("Function not implemented.");
+}
 // Notas:
 // useEffect funciona como componentDidMount (para class components), executando assim que o componente é renderizado
 // setTimeout é uma função nativa do JS, onde o primeiro parâmetro será um função, e o segundo será o tempo em milisegundos em que essa função será executada
