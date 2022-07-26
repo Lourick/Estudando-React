@@ -1,6 +1,7 @@
 import Itens from './item/itens'
 import style from './Lists.module.scss'
 import { ITarefa } from '../../types/tarefa'
+import React from 'react'
 
 interface Props {
     tarefas: ITarefa[],

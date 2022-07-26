@@ -26,7 +26,9 @@ export default function Itens(
                     selecionado,
                     completado,
                     id
-                })}>
+                }
+            )}
+        >
             <h3> {tarefa} </h3>
             <p> {tempo} </p>
             {completado && <span className={style.concluido} aria-label="tarefa completada"></span>}

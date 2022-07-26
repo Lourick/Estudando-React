@@ -6,7 +6,7 @@ import { Cronometro } from '../components/timer/timer';
 import { ITarefa } from '../types/tarefa';
 
 function App() {
-  const [tarefas, setTarefas] = useState<ITarefa[] | []>([]);
+  const [tarefas, setTarefas] = useState<ITarefa[]>([]);
   const [selecionado, setSelecionado] = useState<ITarefa>();
 
   function selecionaTarefa(tarefaSelecionada: ITarefa) {
@@ -21,10 +21,10 @@ function App() {
   }
 
   function finalizarTarefa() {
-    if (selecionado) {
+    if(selecionado) {
       setSelecionado(undefined);
       setTarefas(tarefasAnteriores => tarefasAnteriores.map(tarefa => {
-        if (tarefa.id === selecionado.id) {
+        if(tarefa.id === selecionado.id) {
           return {
             ...tarefa,
             selecionado: false,
@@ -36,12 +36,14 @@ function App() {
     }
   }
 
+
   return (
     <div className={style.AppStyle}>
       <Formulario setTarefas={setTarefas} />
       <Lista
         tarefas={tarefas}
-        selecionaTarefa={selecionaTarefa} />
+        selecionaTarefa={selecionaTarefa}
+      />
       <Cronometro
         selecionado={selecionado}
         finalizarTarefa={finalizarTarefa}
